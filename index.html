@@ -1,0 +1,34 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Calificaciones</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+        {
+            "imports": {}
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Control de Calificaciones</h1>
+
+        
+            <div class="input-group">
+                <input type="text" id="studentNameInput" placeholder="Nombre del Alumno" aria-label="Nombre del Alumno">
+                <button id="addStudentBtn">Agregar Alumno</button>
+            </div>
+        
+
+        
+            <div id="studentsContainer" class="students-container">
+                <!-- Student cards will be rendered here by JavaScript -->
+                <p id="noStudentsMessage">No hay alumnos registrados aún. Agrega uno para empezar.</p>
+            </div>
+        
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

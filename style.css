@@ -1,0 +1,440 @@
+/* style.css */
+:root {
+    --primary-color: #4CAF50;
+    --primary-dark: #388E3C;
+    --secondary-color: #FFC107;
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --card-background: #ffffff;
+    --border-color: #ddd;
+    --danger-color: #f44336;
+}
+
+/* Set base font size for rem units for better overall scaling */
+html {
+    font-size: 16px; /* Adjusted to make letters a little smaller */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 1rem;
+    font-size: 1rem; /* Base font size, now equivalent to 16px */
+}
+
+.container {
+    width: 98%; /* Make it a bit wider, taking 98% of the viewport width */
+    margin: 0 auto;
+    padding: 1rem;
+    background-color: var(--card-background);
+    border-radius: 0.5rem; /* Converted to rem */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* Converted to rem */
+}
+
+h1 {
+    font-size: 2rem; /* Adjusted for smaller overall text */
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 0.5rem; /* Reduced to move it slightly up */
+    line-height: 1.1; /* Increased slightly to separate "Control de" and "Calificaciones" if they wrap onto multiple lines */
+}
+
+h2 {
+    font-size: 1.5rem; /* Adjusted for smaller overall text */
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column; /* Stack on mobile, and now on desktop too for full-width buttons */
+    gap: 0.5rem;
+    margin-bottom: 1rem; /* Keep margin bottom to separate from student cards */
+    border-radius: 0.5rem; /* Add border-radius similar to the removed section */
+}
+
+.input-group input[type="text"] { /* Specific styling for text inputs */
+    flex-grow: 1;
+    padding: 0.7rem; /* Slightly smaller padding */
+    border: 0.0625rem solid var(--border-color); /* 1px converted to rem */
+    border-radius: 0.3125rem; /* 5px converted to rem */
+    font-size: 0.9rem; /* Smaller font size */
+    width: 100%; /* Full width on mobile */
+}
+
+.input-group button {
+    padding: 0.7rem 1.1rem; /* Slightly smaller padding */
+    border: none;
+    border-radius: 0.3125rem; /* 5px converted to rem */
+    cursor: pointer;
+    font-size: 0.9rem; /* Smaller font size */
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Don't shrink buttons */
+    width: 100%; /* Ensure button also takes full width */
+}
+
+.input-group button#addStudentBtn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.input-group button#addStudentBtn:hover {
+    background-color: var(--primary-dark);
+}
+
+.students-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem; /* Add margin-top to separate from input-group */
+    border-radius: 0.5rem; /* Add border-radius similar to the removed section */
+}
+
+.student-card {
+    background-color: var(--card-background);
+    border: 0.0625rem solid var(--border-color); /* 1px converted to rem */
+    border-radius: 0.5rem; /* Converted to rem */
+    padding: 1.2rem; /* Slightly smaller padding */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.05); /* Converted to rem */
+    position: relative; /* For absolute positioning of delete button */
+}
+
+/* Header for student name and delete button */
+.student-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 0.5rem; /* Space between name and button if wrapped */
+}
+
+.student-card-header .student-name {
+    margin: 0; /* Reset margin from h3 */
+    color: var(--primary-color);
+    font-size: 1.2rem; /* Smaller font size */
+    font-weight: bold;
+    flex-grow: 1; /* Allow name to take available space */
+}
+
+/* Controls group for subject, year, section */
+.student-card-controls {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to the next line on smaller screens */
+    gap: 0.4rem; /* Space between elements - reduced for tighter layout */
+    margin-bottom: 0.8rem; /* Space below this control group */
+    align-items: center; /* Vertically align items in the row */
+}
+
+/* Group for Year and Section display */
+.year-section-group {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem; /* Space between year display and section select - reduced for tighter layout */
+}
+
+.year-display {
+    padding: 0.3rem 0.3rem; /* Reduced horizontal padding to make the box narrower */
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.3125rem;
+    background-color: #f0f0f0; /* Light grey background to look like a button */
+    font-weight: bold;
+    font-size: 0.85rem; /* Slightly reduced font size */
+    color: var(--text-color);
+    display: inline-block; /* Ensure padding and border apply correctly */
+}
+
+/* New: Styling for the moment select input */
+.moment-select {
+    padding: 0.3rem 0.3rem; /* Adjusted padding to make it narrower */
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.3125rem;
+    background-color: white;
+    font-size: 0.9rem;
+    font-weight: bold; /* Make it bold for Roman numerals */
+    color: var(--text-color);
+    cursor: pointer;
+    -webkit-appearance: none; /* Remove default browser styling */
+    -moz-appearance: none;
+    appearance: none;
+    text-align: center; /* Center the Roman numeral */
+    padding-right: 0.3rem; /* No arrow, so less padding needed */
+}
+
+.moment-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.125rem rgba(76, 175, 80, 0.25);
+}
+
+/* Styling for select inputs */
+.subject-select,
+.section-select {
+    padding: 0.4rem 0.7rem; /* Slightly increased padding */
+    padding-left: 0.2rem; /* Reduced left padding to make the box narrower from the left */
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.3125rem;
+    background-color: white;
+    font-size: 0.9rem; /* Slightly increased font size */
+    color: var(--text-color); /* Ensure text is visible */
+    cursor: pointer;
+    -webkit-appearance: none; /* Remove default browser styling for select */
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center; /* Position arrow to the right */
+    background-size: 0.8rem; /* Size of the arrow - reduced for tighter layout */
+    padding-right: 1.0rem; /* Adjusted space for the arrow after reducing padding */
+}
+
+/* Remove arrow for subject select */
+.subject-select {
+    background-image: none;
+    padding: 0.4rem 0.3rem; /* Adjusted padding to make it narrower from sides */
+    text-align: center; /* Center the text for Matemática, Física */
+}
+
+/* Remove arrow for section select */
+.section-select {
+    background-image: none;
+    padding: 0.4rem 0.5rem; /* Adjusted padding to be symmetrical and slightly smaller */
+    text-align: center; /* Center the text for A, B, C, D */
+}
+
+.subject-select:focus,
+.section-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.125rem rgba(76, 175, 80, 0.25);
+}
+
+.subject-select option,
+.section-select option,
+.moment-select option { /* Added moment-select option */
+    color: var(--text-color);
+    font-size: 0.9rem; /* Restore font size for options */
+    padding: 0.3rem 0.5rem; /* Add padding to options for readability */
+}
+
+.delete-student-btn {
+    background-color: var(--danger-color);
+    color: white;
+    font-size: 0.7rem; /* Smaller font size */
+    padding: 0.4rem 0.7rem; /* Smaller padding */
+    border-radius: 0.3125rem; /* Consistent border-radius */
+    border: 0.0625rem solid var(--danger-color); /* Add red border */
+    font-weight: bold; /* Make text bolder */
+}
+
+.delete-student-btn:hover {
+    background-color: #c0392b;
+}
+
+.evaluations-list {
+    margin-top: 0.8rem; /* Slightly smaller margin */
+    display: flex;
+    flex-direction: column; /* Keep evaluations stacking vertically */
+    gap: 0.7rem; /* Slightly smaller gap */
+}
+
+.evaluation-item {
+    display: flex;
+    flex-direction: column; /* Stack header, inputs, button vertically by default */
+    gap: 0.7rem; /* Adjusted gap to space elements */
+    padding: 0.7rem; /* Slightly smaller padding */
+    padding-left: 0.4rem; /* Adjusted for words to be more to the left */
+    border: 0.0625rem solid #eee; /* 1px converted to rem */
+    border-radius: 0.3125rem; /* 5px converted to rem */
+    background-color: #f9f9f9;
+}
+
+.evaluation-header-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between number and the controls group */
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+    flex-grow: 1; /* Allow it to grow in .evaluation-item */
+    width: 100%; /* Take full width on small screens initially */
+}
+
+.evaluation-controls { /* NEW STYLE for the group of select, input, button */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between select, input, and button within the group */
+    margin-left: auto; /* Pushes this group to the right */
+    flex-shrink: 0; /* Prevent this group from shrinking */
+    flex-wrap: wrap; /* Allow controls to wrap within themselves if space is tight */
+}
+
+.evaluation-number {
+    font-weight: bold;
+    color: var(--primary-dark);
+    font-size: 0.9rem; /* Match other smaller fonts */
+    flex-shrink: 0;
+}
+
+/* Specific styling for elements within .evaluation-controls */
+.evaluation-controls .evaluation-type-select {
+    /* Remove default browser styling for select box */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Add a custom SVG arrow as background */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333' width='24px' height='24px'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3Cpath d='M0 0h24v24H0z' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0.2rem center; /* Adjusted to move the arrow slightly to the left */
+    background-size: 1rem; /* Size of the arrow - further reduced */
+    /* Make the select box very small, essentially just the arrow */
+    width: 1.5rem; /* Further reduced width */
+    height: 1.5rem; /* Further reduced height to maintain aspect ratio */
+    padding: 0; /* Remove padding */
+    /* Hide the text content but keep it functional and accessible */
+    color: transparent;
+    font-size: 0;
+    overflow: hidden;
+
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.3125rem;
+    background-color: white;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Ensure options are visible when the dropdown is open */
+.evaluation-controls .evaluation-type-select option {
+    color: var(--text-color);
+    font-size: 0.9rem; /* Restore font size for options */
+    padding: 0.3rem 0.5rem; /* Add padding to options for readability */
+}
+
+/* Styling for the grade input, now directly inside evaluation-controls */
+.evaluation-controls input[type="number"] {
+    width: 2rem; /* Adjusted width to make grade input smaller */
+    flex-shrink: 0; /* Prevent the input from shrinking */
+    text-align: right; /* Align text to the right for numerical input */
+    padding: 0.4rem; /* Reduced padding */
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.3125rem;
+    font-size: 0.9rem;
+}
+
+.evaluation-controls .delete-evaluation-btn {
+    background-color: var(--danger-color); /* Red color */
+    color: white;
+    font-size: 0.9rem; /* Smaller font size */
+    padding: 0.2rem 0.5rem; /* Smaller padding */
+    border-radius: 0.3125rem; /* Consistent border-radius */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.0625rem solid var(--danger-color); /* Added red border */
+    font-weight: bold; /* Make text bolder */
+}
+
+.delete-evaluation-btn:hover {
+    background-color: #c0392b; /* Darker red on hover */
+}
+
+/* New: Wrapper for "Add Evaluation" and "Print Summary" buttons */
+.student-actions {
+    display: grid;
+    grid-template-columns: 1fr; /* Default to single column for mobile */
+    gap: 0.8rem; /* Space between buttons */
+    margin-top: 0.8rem; /* Space above the buttons */
+}
+
+.student-actions button {
+    width: 100%; /* Full width for buttons inside this group */
+}
+
+.add-evaluation-btn {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border: 0.0625rem solid var(--secondary-color); /* Add yellow border */
+    border-radius: 0.3125rem; /* Ensure rounded corners */
+    padding: 0.7rem 1.1rem; /* Added padding to make it visually more substantial and match add student button */
+    font-size: 0.9rem; /* Match other buttons */
+    font-weight: bold; /* Match other buttons */
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-evaluation-btn:hover {
+    background-color: #e6b100;
+}
+
+.print-student-summary-btn {
+    background-color: #007bff; /* A blue color for print */
+    color: white;
+    border: 0.0625rem solid #007bff;
+    border-radius: 0.3125rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.print-student-summary-btn:hover {
+    background-color: #0056b3;
+}
+
+.final-average {
+    margin-top: 1.2rem; /* Slightly smaller margin */
+    padding-top: 0.8rem; /* Slightly smaller padding */
+    border-top: 0.0625rem dashed var(--border-color); /* 1px converted to rem */
+    font-size: 1rem; /* Slightly smaller font size */
+    font-weight: bold;
+    text-align: right;
+    color: var(--primary-dark);
+    display: flex; /* Make it a flex container */
+    align-items: center; /* Vertically align items */
+    justify-content: flex-end; /* Align items to the right */
+    gap: 0.8rem; /* Space between "Nota Final" text and the status box */
+}
+
+/* Styles for the new grade status box */
+.grade-status {
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3125rem; /* Consistent border-radius (5px) */
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    white-space: nowrap; /* Prevent text from wrapping inside the box */
+}
+
+.reprobado {
+    background-color: var(--danger-color); /* Red */
+}
+
+.aprobado {
+    background-color: var(--primary-color); /* Green */
+}
+
+#noStudentsMessage {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 1.5rem; /* Slightly smaller padding */
+    font-size: 0.9rem; /* Smaller font size */
+}
+
+/* Desktop / Tablet adjustments */
+@media (min-width: 600px) {
+    /* Removed flex-direction: row from .input-group here to make input and button always stack vertically and take full width */
+    /* Removed width: auto from .add-evaluation-btn here to make it always take full width */
+    .student-actions {
+        grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
+    }
+}
